@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Para o meu amor</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to top, #ffe6e6, #fff0f5);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 7s linear infinite;
+    opacity: 0.7;
+    border-radius: 4px;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -50%;
+    left: 0;
+  }
+
+  .heart::after {
+    left: -50%;
+    top: 0;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  .container {
+    perspective: 1500px;
+  }
+
+  .letter {
+    width: 350px;
+    height: 250px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease, width 0.6s ease, height 0.6s ease;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: white;
+  }
+
+  .letter.open {
+    width: 700px;
+    height: 550px;
+    max-height: 90vh;
+    transform: rotateY(180deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-radius: 20px;
+  }
+
+  .face, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .face {
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    user-select: none;
+    justify-content: space-between;
+  }
+
+  .face .main-text {
+    font-size: 32px;
+    margin-bottom: auto;
+  }
+
+  .face .footer-text {
+    font-size: 16px;
+    font-weight: normal;
+    color: #c2185b;
+  }
+
+  .back {
+    transform: rotateY(180deg);
+    background-color: #fff0f5;
+    color: #333;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+  }
+
+  .back img {
+    width: auto;
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 8px;
+    object-fit: contain;
+    margin: 0 auto;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+
+  .letter.open .back img {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+
+  .back p {
+    overflow-y: auto;
+    padding-right: 10px;
+    max-height: 100%;
+  }
+
+  .back::-webkit-scrollbar {
+    width: 6px;
+  }
+  .back::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .back::-webkit-scrollbar-thumb {
+    background-color: rgba(200, 50, 100, 0.5);
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Animação de corações -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      const size = Math.random() * 10 + 10;
+      heart.style.width = `${size}px`;
+      heart.style.height = `${size}px`;
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+      heart.style.opacity = Math.random() * 0.5 + 0.5;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 250);
+  </script>
+
+  <!-- Som ao abrir a carta -->
+  <audio id="openSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_c2e30279f6.mp3" preload="auto"></audio>
+
+  <div class="container">
+    <div class="letter" id="letter">
+
+      <!-- Frente -->
+      <div class="face">
+        <div class="main-text">💌 Toque para abrir a carta 💖</div>
+        <div class="footer-text">
+          <div>Para: Minha Amada Hevilin</div>
+          <div>De: Seu Homem</div>
+        </div>
+      </div>
+
+      <!-- Verso -->
+      <div class="back">
+        <img src="0d5591e7-c171-4b2a-a35b-7249a137dc8f.jpg" alt="Foto do meu amor comigo" />
+
+        <p>
+          <strong>Hevilin</strong>,<br><br>
+          Fiz isso como uma forma de demonstrar o quanto eu te amo. Quero que, quando estivermos passando por momentos difíceis, você lembre disso e reabra essa carta para recordar tudo, desde o início.<br><br>
+
+          Depois que você chegou na minha vida, tudo mudou, foi como sair da água para o vinho. Eu já não me lembrava mais de como era ser feliz dessa forma. Sendo bem sincero, às vezes acho que não te mereço. Você é tão boa pra mim, tão carinhosa, tão atenciosa, Se eu fosse falar tudo o que você é, eu ficaria o dia todo digitando kkkkkkk.<br><br>
+
+          Tenho a absoluta certeza de que não nos encontramos por acaso. Sempre orei a Deus para tirar aquele vazio dentro de mim, aquela angústia que eu sentia e nem eu mesmo sabia explicar, e, de repente, você apareceu. E, juntamente com a sua chegada, tudo que era ruim simplesmente desapareceu. Eu nem lembro mais como era aquela dor.<br><br>
+
+          Você mudou a minha vida de uma forma que eu nunca imaginei. Me sinto o homem mais sortudo do mundo por ter você. De fato, tem pessoas que ganham na loteria, e eu agradeço a Deus todos os dias por ser uma delas.<br><br>
+
+          Obrigado por me permitir te amar. Obrigado por ser você.<br><br>
+
+          É um privilégio dizer que te amo.<br>
+          Você é tudo pra mim, meu amor.<br><br>
+
+          <strong>Eu te amo!</strong>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const carta = document.getElementById('letter');
+    const som = document.getElementById('openSound');
+
+    carta.addEventListener('click', () => {
+      carta.classList.toggle('open');
+      som.currentTime = 0;
+      som.play();
+    });
+  </script>
+
+</body>
+</html>
